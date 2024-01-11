@@ -12,7 +12,7 @@ export default defineConfig({
                 pagetitle: resolve(__dirname, 'pages/pagetitle/index.html'),
                 shop: resolve(__dirname, 'pages/shop/index.html'),
                 signin: resolve(__dirname, 'pages/signin/index.html'),
-                singup: resolve(__dirname, 'pages/singup/index.html'),
+                signup: resolve(__dirname, 'pages/signup/index.html'),
             },
         },
     },
