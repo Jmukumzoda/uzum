@@ -513,6 +513,7 @@ export function reload_bucket(arr, place) {
                 likes = likes.filter(el => el !== i.id);
                 localStorage.setItem("likes", JSON.stringify(likes));
                 container.remove()
+                location.assign('/pages/basket/')
             } else {
                 if (likes.indexOf(i.id) === -1) {
                     likes.push(i.id);
@@ -612,6 +613,7 @@ export function reload_likes(arr, place) {
                 Favorite = Favorite.filter(el => el !== item.id);
                 localStorage.setItem("favorite", JSON.stringify(Favorite));
                 div.remove()
+                location.assign('/pages/Favorite/')
             } else {
                 if (Favorite.indexOf(item.id) === -1) {
                     Favorite.push(item.id);
@@ -635,7 +637,7 @@ export function reload_likes(arr, place) {
                 }
             }
         }
-        
+
 
 
         if (item.title.length > 20) {

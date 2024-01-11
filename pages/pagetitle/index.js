@@ -41,6 +41,42 @@ getData(`/goods/${id}`)
         let btn_add_favorites = document.createElement('button')
         let similar_products = document.createElement('div')
         let h1 = document.createElement('h1')
+        // Создаем слайдер
+        let swiper = document.createElement('div');
+        swiper.className = 'swiper mySwiper';
+        let swiperWrapper = document.createElement('div');
+        swiperWrapper.className = 'swiper-wrapper';
+        let slide1 = document.createElement('div');
+        slide1.className = 'swiper-slide';
+        let slide1Img = document.createElement('img');
+        slide1Img.src = res.data.media[0]
+        slide1Img.alt = '';
+        slide1.appendChild(slide1Img);
+
+        let slide2 = document.createElement('div');
+        slide2.className = 'swiper-slide';
+        let slide2Img = document.createElement('img');
+        slide2Img.src = res.data.media[1]
+        slide2Img.alt = '';
+        slide2.appendChild(slide2Img);
+
+        let slide3 = document.createElement('div');
+        slide3.className = 'swiper-slide';
+        let slide3Img = document.createElement('img');
+        slide3Img.src = res.data.media[2]
+        slide3Img.alt = '';
+        slide3.appendChild(slide3Img);
+
+
+        let swiperPagination = document.createElement('div');
+        swiperPagination.className = 'swiper-pagination';
+
+
+        let swiperButtonNext = document.createElement('div');
+        swiperButtonNext.className = 'swiper-button-next';
+
+        let swiperButtonPrev = document.createElement('div');
+        swiperButtonPrev.className = 'swiper-button-prev';
 
 
         div.classList.add('img_block')
@@ -76,9 +112,15 @@ getData(`/goods/${id}`)
         if (res.data.salePercentage > 0) {
             p.innerHTML = Math.ceil((res.data.price * res.data.salePercentage) / 100) + ' сум'
         }
-
+        swiperWrapper.appendChild(slide1);
+        swiperWrapper.appendChild(slide2);
+        swiperWrapper.appendChild(slide3);
+        swiper.appendChild(swiperWrapper);
+        swiper.appendChild(swiperPagination);
+        swiper.appendChild(swiperButtonNext);
+        swiper.appendChild(swiperButtonPrev);
         link.append(div, h1, similar_products)
-        div.append(img, text, text_current)
+        div.append(swiper, text, text_current)
         text.append(h3, text_current, counter, hr, p_descript, div_btns)
         div_btns.append(btn_add_favorites, btn_add_shop)
         text_current.append(strong, p)
@@ -176,6 +218,27 @@ getData(`/goods/${id}`)
                 }
             }
         }
+        let swip = new Swiper(".swiper", {
+            spaceBetween: 40,
+            centeredSlides: true,
+            autoplay: {
+                delay: 2000,
+            },
+            allowTouchMove: true,
+
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                type: 'progressbar',
+            },
+
+            mousewheel: true,
+            keyboard: true,
+        });
 
     })
 footer()

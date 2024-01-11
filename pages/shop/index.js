@@ -21,20 +21,26 @@ getData('/goods?colors=' + id)
         reload(res.data, color_bac)
     }
     )
-// let inp1 = document.querySelector('.inp')
-// let inp2 = document.querySelector('.inp_before')
-// let value = inp1.value
-// inp1.onsubmit = () => {
-//     getData('/goods?price=' + inp1)
-//         .then(res => {
-//             console.log(res)
-//         })
-//         console.log(value);
+let inp1 = document.querySelector('.inp')
+let inp2 = document.querySelector('.inp_before')
+let value = inp1.value
+inp1.onkeyup = () => {
+    // if (inp1.value > 100 || inp2.value < 10000) {
+    getData('/goods?price=' + inp1.value)
+        .then(res => {
+            console.log(res.data.sort((a, b) => a.price - b.price));
+            reload(res.data, save)
 
-//     // res.data.sort((a, b) => a.price - b.price)
-//     // if (!isNaN(inp1) && !isNaN(inp2)) {
-//     // }
-// }
+        })
+    console.log(inp1.value);
+}
+inp2.onkeyup = () => {
+    getData('/goods?price=' + inp2.value)
+    .then(res => {
+        console.log(res.data.sort((a, b) => a.price - b.price));
+        console.log(res.data);
+    })
+}
 let categor = []
 let color = []
 getData('/goods')
