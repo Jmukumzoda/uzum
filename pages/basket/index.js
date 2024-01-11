@@ -7,7 +7,7 @@ getData('/goods')
         head()
     })
 navbar_window()
-let get = JSON.parse(localStorage.getItem('likes'))
+let get = JSON.parse(localStorage.getItem('likes')) || []
 let wrap = document.querySelector('.wrapper_block')
 let btn = document.querySelector('.button')
 let wrapper = document.querySelector('.wrap_bucket')

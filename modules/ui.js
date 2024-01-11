@@ -301,6 +301,7 @@ export function head() {
     }
     logout_img.onclick = () => {
         localStorage.removeItem('user')
+        localStorage.clear()
         location.assign('/')
     }
 }
