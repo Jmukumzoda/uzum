@@ -173,7 +173,6 @@ getData(`/goods/${id}`)
         }
         btn_add_shop.onclick = (e) => {
             e.preventDefault();
-
             if (likes.includes(id)) {
                 alert('Это товар уже у вас в корзине')
                 return;
@@ -189,6 +188,8 @@ getData(`/goods/${id}`)
                     btn_add_favorites.classList.remove('btn_favorites')
                 }
             }
+            count.push(counterValue)
+            console.log(localStorage.setItem('count', JSON.stringify(count)))
         }
 
         btn_add_favorites.onclick = (e) => {

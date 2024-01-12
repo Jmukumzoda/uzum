@@ -8,6 +8,7 @@ getData('/goods')
     })
 navbar_window()
 let get = JSON.parse(localStorage.getItem('likes')) || []
+let count = JSON.parse(localStorage.getItem('count')) || []
 let wrap = document.querySelector('.wrapper_block')
 let btn = document.querySelector('.button')
 let wrapper = document.querySelector('.wrap_bucket')
@@ -39,9 +40,10 @@ if (get.length === 0) {
     main.append(div)
 }
 
-console.log(get);
+console.log(get, count);
 
 let bucket_mas = []
+let bucket_count = []
 
 get.forEach(el => {
     getData(`/goods/${el}`)
@@ -50,4 +52,11 @@ get.forEach(el => {
             reload_bucket(bucket_mas, wrap)
         })
 })
+// count.forEach(el => {
+//     getData(`/goods/${el}`)
+//         .then(res => {
+//             bucket_count.push(res.data)
+//             console.log(res.data);
+//         })
+// })
 footer()

@@ -489,7 +489,10 @@ export function reload_bucket(arr, place) {
         p_color.innerHTML = 'Цвет: ' + i.colors[0]
         strong.innerHTML = JSON.parse(localStorage.getItem('likes')).length
         delete_img.src = '/public/img/delete.png'
-        counter_input.value = 1
+        let count = JSON.parse(localStorage.getItem('count')) || []
+        count.forEach(el => {
+            counter_input.value = el
+        })
         counter_plus.innerHTML = '+'
         counter_minus.innerHTML = '-'
         p_price.innerHTML = parseFloat(i.price).toLocaleString('us-US') + ' сум'
@@ -521,6 +524,7 @@ export function reload_bucket(arr, place) {
                     localStorage.setItem("likes", JSON.stringify(likes));
                 }
             }
+
         }
         img.onclick = () => {
             location.assign('/pages/pagetitle/?id=' + i.id)
@@ -541,6 +545,7 @@ export function reload_bucket(arr, place) {
             }
 
         }
+      
         function updateCounter() {
             p_sale.innerHTML = `${i.price}` * counter_input.value + 'сум'
         }
@@ -552,7 +557,9 @@ export function reload_bucket(arr, place) {
             total += product.price * counter_input.value
             total_price.innerHTML = total + 'сум'
         });
+
     }
+
 }
 
 export function reload_likes(arr, place) {
