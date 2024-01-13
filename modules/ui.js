@@ -63,6 +63,12 @@ export function reload(arr, place) {
             location.assign('/pages/pagetitle/?id=' + item.id)
         }
         item.id = String(item.id)
+        if (Favorite.includes(item.id)) {
+            img_like.src = '/public/img/Vector_like.png'
+        } else {
+            img_like.src = '/public/img/Vector.png'
+
+        }
         img_like.onclick = (e) => {
             e.preventDefault()
             let id_str = JSON.parse(item.id)
@@ -76,9 +82,11 @@ export function reload(arr, place) {
                 if (Favorite.indexOf(item.id) === -1) {
                     Favorite.push(item.id);
                     localStorage.setItem("favorite", JSON.stringify(Favorite));
+                    img_like.src = '/public/img/Vector_like.png'
 
                 }
             }
+
         }
         img_shop.onclick = (e) => {
             e.preventDefault();
@@ -477,7 +485,7 @@ export function reload_bucket(arr, place) {
         img.classList.add('bucket_container_img')
         div_p.classList.add('p_container')
         counter.classList.add('counter')
-
+        
         img.src = i.media[0]
         p.innerHTML = i.title
         div_delete.style.display = 'flex'
@@ -489,10 +497,8 @@ export function reload_bucket(arr, place) {
         p_color.innerHTML = 'Цвет: ' + i.colors[0]
         strong.innerHTML = JSON.parse(localStorage.getItem('likes')).length
         delete_img.src = '/public/img/delete.png'
-        let count = JSON.parse(localStorage.getItem('count')) || []
-        count.forEach(el => {
-            counter_input.value = el
-        })
+
+        counter_input.value = 1
         counter_plus.innerHTML = '+'
         counter_minus.innerHTML = '-'
         p_price.innerHTML = parseFloat(i.price).toLocaleString('us-US') + ' сум'
@@ -545,7 +551,7 @@ export function reload_bucket(arr, place) {
             }
 
         }
-      
+
         function updateCounter() {
             p_sale.innerHTML = `${i.price}` * counter_input.value + 'сум'
         }
@@ -556,7 +562,7 @@ export function reload_bucket(arr, place) {
         arr.forEach(product => {
             total += product.price * counter_input.value
             total_price.innerHTML = total + 'сум'
-        });
+        })
 
     }
 

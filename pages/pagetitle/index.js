@@ -31,9 +31,9 @@ getData(`/goods/${id}`)
         let p = document.createElement('p')
         let strong = document.createElement('strong')
         let counter = document.createElement('div')
-        let counter_p = document.createElement('p')
-        let btn_plas = document.createElement('button')
-        let btn_minis = document.createElement('button')
+        let counter_plus = document.createElement('button')
+        let counter_minus = document.createElement('button')
+        let counter_input = document.createElement('input')
         let hr = document.createElement('hr')
         let p_descript = document.createElement('p')
         let div_btns = document.createElement('div')
@@ -88,17 +88,15 @@ getData(`/goods/${id}`)
         p.classList.add('block_strong')
         strong.classList.add('block-p')
         counter.classList.add('counter')
-        btn_minis.classList.add('btn_couter')
-        btn_plas.classList.add('btn_couter')
         div_btns.classList.add('div_btns')
         btn_add_shop.classList.add('btn_shop')
         btn_add_favorites.classList.add('btn_favorites')
         div_btns.classList.add('div_btns')
         p_descript.style.width = '88%'
 
-        counter_p.innerHTML = 1
-        btn_minis.innerHTML = '-'
-        btn_plas.innerHTML = '+'
+        counter_input.value = 1
+        counter_plus.innerHTML = '+'
+        counter_minus.innerHTML = '-'
         img.src = res.data.media[0]
         h1.innerHTML = 'Похожие товары'
         h3.innerHTML = res.data.title
@@ -124,31 +122,29 @@ getData(`/goods/${id}`)
         text.append(h3, text_current, counter, hr, p_descript, div_btns)
         div_btns.append(btn_add_favorites, btn_add_shop)
         text_current.append(strong, p)
-        counter.append(btn_minis, counter_p, btn_plas)
+        counter.append(counter_minus, counter_input, counter_plus)
 
 
-        let counterValue = 1;
         let price = res.data.price
-        const maxCounterValue = 15;
 
-        btn_plas.onclick = () => {
-            if (counterValue < maxCounterValue) {
-                counterValue++;
-                updateCounter();
+        const maxprodict = 15
+        counter_plus.onclick = () => {
+            if (counter_input.value < maxprodict) {
+                counter_input.value = ++counter_input.value
+                updateCounter()
             }
-        }
 
-        btn_minis.onclick = () => {
-            if (counterValue > 1) {
-                counterValue--;
-                updateCounter();
+        }
+        counter_minus.onclick = () => {
+            if (counter_input.value > 1) {
+                counter_input.value = --counter_input.value
+                updateCounter()
             }
-        }
 
+        }
 
         function updateCounter() {
-            counter_p.innerHTML = counterValue
-            strong.innerHTML = `${price}` * counterValue + 'сум'
+            strong.innerHTML = `${price}` * counter_input.value + 'сум'
 
         }
         if (res.data.type === "furniture") {
@@ -188,8 +184,7 @@ getData(`/goods/${id}`)
                     btn_add_favorites.classList.remove('btn_favorites')
                 }
             }
-            count.push(counterValue)
-            console.log(localStorage.setItem('count', JSON.stringify(count)))
+
         }
 
         btn_add_favorites.onclick = (e) => {

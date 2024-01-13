@@ -332,13 +332,33 @@
     align-items: center;
 }
 
+/* 
 .counter {
     font-size: 2em;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
+} */
+.counter {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #c4c4c4;
+    height: 50px;
+    width: fit-content;
 }
+
+.counter button,
+.counter input {
+    border: none;
+    background: none;
+    width: 30px;
+    padding: 5px 10px;
+    appearance: none;
+    outline: none;
+}
+
 
 .btn_couter {
     border-radius: 100%;

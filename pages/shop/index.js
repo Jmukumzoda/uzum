@@ -36,10 +36,10 @@ inp1.onkeyup = () => {
 }
 inp2.onkeyup = () => {
     getData('/goods?price=' + inp2.value)
-    .then(res => {
-        console.log(res.data.sort((a, b) => a.price - b.price));
-        console.log(res.data);
-    })
+        .then(res => {
+            console.log(res.data.sort((a, b) => a.price - b.price));
+            console.log(res.data);
+        })
 }
 let categor = []
 let color = []
@@ -67,8 +67,70 @@ function coloris(arr) {
         li.classList.add('categorie_li')
 
         a.innerHTML = item
-        a.href = '/pages/shop/?colors=' + item
-
+        a.href = '/pages/shop/?type=' + id + '/?colors=' + item
+        if (a.innerHTML === "orange") {
+            let img = document.createElement('img')
+            li.append(img)
+            img.style.width = "20px"
+            img.style.borderRadius = "10px"
+            img.src = 'https://image-cdn.kazanexpress.ru/static/filter_icon/color/orange.png'
+        }
+        if (a.innerHTML === "black") {
+            let img = document.createElement('img')
+            li.append(img)
+            img.style.width = "20px"
+            img.style.borderRadius = "10px"
+            img.src = 'https://image-cdn.kazanexpress.ru/static/filter_icon/color/black.png'
+        }
+        if (a.innerHTML === "blue") {
+            let img = document.createElement('img')
+            li.append(img)
+            img.style.width = "20px"
+            img.style.borderRadius = "10px"
+            img.src = 'https://image-cdn.kazanexpress.ru/static/filter_icon/color/blue.png'
+        }
+        if (a.innerHTML === "green") {
+            let img = document.createElement('img')
+            li.append(img)
+            img.style.width = "20px"
+            img.style.borderRadius = "10px"
+            img.src = 'https://image-cdn.kazanexpress.ru/static/filter_icon/color/green.png'
+        }
+        if (a.innerHTML === "red") {
+            let img = document.createElement('img')
+            li.append(img)
+            img.style.width = "20px"
+            img.style.borderRadius = "10px"
+            img.src = 'https://image-cdn.kazanexpress.ru/static/filter_icon/color/red.png'
+        }
+        if (a.innerHTML === "grey") {
+            let img = document.createElement('img')
+            li.append(img)
+            img.style.width = "20px"
+            img.style.borderRadius = "10px"
+            img.src = 'https://image-cdn.kazanexpress.ru/static/filter_icon/color/grey.png'
+        }
+        if (a.innerHTML === "white") {
+            let img = document.createElement('img')
+            li.append(img)
+            img.style.width = "20px"
+            img.style.borderRadius = "10px"
+            img.src = 'https://image-cdn.kazanexpress.ru/static/filter_icon/color/white.png'
+        }
+        if (a.innerHTML === "#D0D0D1FF") {
+            let img = document.createElement('img')
+            li.append(img)
+            img.style.width = "20px"
+            img.style.borderRadius = "10px"
+            img.src = 'https://image-cdn.kazanexpress.ru/static/filter_icon/color/.png'
+        }
+        if (a.innerHTML === "#915927FF") {
+            let img = document.createElement('img')
+            li.append(img)
+            img.style.width = "20px"
+            img.style.borderRadius = "10px"
+            img.src = 'https://image-cdn.kazanexpress.ru/static/filter_icon/color/#915927FF.png'
+        }
         a.style.color = 'black'
         colors.append(li)
         li.append(a)
