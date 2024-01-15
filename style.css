@@ -93,6 +93,10 @@
   right: 30px;
 }
 
+.wrap h1 a {
+  color: #000;
+}
+
 .search {
   display: flex;
   width: 72.6%;
