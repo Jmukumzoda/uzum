@@ -274,7 +274,9 @@ export function head() {
     ul_user.firstElementChild.onclick = (e) => {
         e.preventDefault()
         location.assign('/pages/signup/')
+
     }
+    ul_user.style.cursor = 'pointer'
 
     user_p.innerHTML = user.name
     ul_user.firstElementChild.onclick = (e) => {
