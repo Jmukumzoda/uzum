@@ -143,8 +143,6 @@ export function head() {
     let shops_p = document.createElement('a')
     let categories = document.createElement('div')
     let categorie = document.createElement('ul')
-    let li_categories = document.createElement('li')
-    let li_img_categories = document.createElement('img')
     let modal = document.createElement('div')
     let modal_tx = document.createElement('div')
     let li_logout = document.createElement('li')
@@ -164,7 +162,8 @@ export function head() {
         a.innerHTML = item
         a.href = '/pages/shop/?type=' + item
 
-        a.style.color = '#ccc'
+        a.classList.add('categorie_li_a')
+        li.classList.add('li_a')
         categorie.append(li)
         li.append(a)
     }
@@ -190,7 +189,6 @@ export function head() {
     li_img_shops.classList.add('user_shop_img')
     categories.classList.add('categories')
     categorie.classList.add('categorie')
-    li_categories.classList.add('li_categories')
     modal.classList.add('modal')
     modal_tx.classList.add('modal_text')
 
@@ -200,20 +198,17 @@ export function head() {
     user_p.style.color = 'black'
     p_catalog.innerHTML = 'Каталог'
     inp.type = 'text'
-    li_categories.innerHTML = 'Рассрочка'
-    li_img_categories.src = 'https://static.uzum.uz/nasiya/union.png'
-    li_img_categories.style.width = '40px'
     inp.placeholder = 'Искать товары и категории'
     user_p.innerHTML = "Войти"
     Favorites_p.innerHTML = "Избранное"
     shops_p.innerHTML = "Корзина"
-    li_img.src = '/public/img/download.svg'
-    inp_img.src = '/public/img/search-interface-symbol.png'
-    li_img_Favorites.src = '/public/img/free-icon-love-and-romance-8579290.png'
-    li_img_shops.src = '/public/img/free-icon-handbag-3345405.png'
-    li_img_user.src = '/public/img/Group 237729.png'
+    li_img.src = '/img/download.svg'
+    inp_img.src = '/img/search-interface-symbol.png'
+    li_img_Favorites.src = '/img/heart.png'
+    li_img_shops.src = '/img/bag.png'
+    li_img_user.src = '/img/user.png'
     user_p.href = '/'
-    logout_img.src = '/public/img/2676937_exit_leave_logout_signout_icon.png'
+    logout_img.src = '/img/2676937_exit_leave_logout_signout_icon.png'
     logout_img.style.width = '30px'
     li_Favorites.onclick = () => {
         location.assign('/pages/Favorite/')
@@ -224,13 +219,12 @@ export function head() {
     p_catalog.style.fontWeight = '800';
 
 
+
     body.prepend(header)
     header.append(wrap)
     wrap.append(setings, search, modal, categories)
     modal.append(modal_tx)
     categories.append(categorie)
-    categorie.prepend(li_categories)
-    li_categories.prepend(li_img_categories)
     setings.append(ul, ul_user)
     ul.append(li, li_catalog, li_inp)
     li.append(li_img)
@@ -289,23 +283,46 @@ export function head() {
             windowDiv.style.right = '-270px'
         }
     }
-    inp.onkeyup = (e) => {
-        e.preventDefault();
-        search.classList.add('show_titil')
-        let value = inp.value
-        getData('/goods?title=' + value)
-            .then(res => {
-                console.log(res);
-                for (let i of res.data) {
-                    let a = document.createElement('a')
-                    a.innerHTML = i.title
-                    a.href = '/pages/pagetitle/?id=' + i.id
-                    search_text.append(a)
-                    console.log(a);
-                }
+    // inp.onkeyup = (e) => {
+    //     e.preventDefault();
+    //     search.classList.add('show_titil')
+    //     let value = inp.value
+    //     getData('/goods?title=' + value)
+    //         .then(res => {
+    //             console.log(res);
+    //             for (let i of res.data) {
+    //                 let a = document.createElement('a')
+    //                 a.innerHTML = i.title
+    //                 a.href = '/pages/pagetitle/?id=' + i.id
+    //                 search_text.append(a)
+    //                 console.log(a);
+    //             }
 
-            })
-    }
+    //         })
+    // }
+
+    // inp.onkeyup = (e) => {
+    //     e.preventDefault()
+    //     getData('/goods')
+    //         .then(res => {
+    //             console.log(res);
+    //             let value = inp.value;
+    //             for (let i of res.data) {
+    //             if (value[0][1] == i.title[0][1]) {
+    //                     console.log(i.titler);
+    //                 }
+    //             }
+    //             // getData('/goods?title' )
+    //             //     .then(res => {
+    //             //         console.log(res);
+    //             //         // console.log(res.data.title);
+    //             //       
+    //             //     })
+
+
+    //         })
+
+    // }
     li_logout.onclick = () => {
         location.assign('/')
     }
@@ -346,9 +363,9 @@ export function navbar_window() {
     ul.classList.add('navbarUl')
 
 
-    li_img_Favorites.src = '/public/img/free-icon-love-and-romance-8579290.png'
-    li_img_shops.src = '/public/img/free-icon-handbag-3345405.png'
-    li_img_user.src = '/public/img/Group 237729.png'
+    li_img_Favorites.src = '/img/heart.png'
+    li_img_shops.src = '/img/bag.png'
+    li_img_user.src = '/img/user.png'
     inp.type = 'text'
     inp.placeholder = 'Искать товары и категории'
 
@@ -487,7 +504,7 @@ export function reload_bucket(arr, place) {
         img.classList.add('bucket_container_img')
         div_p.classList.add('p_container')
         counter.classList.add('counter')
-        
+
         img.src = i.media[0]
         p.innerHTML = i.title
         div_delete.style.display = 'flex'

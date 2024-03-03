@@ -15,10 +15,10 @@ let wrapper = document.querySelector('.wrap_bucket')
 let wraper = document.querySelector('.wrapper')
 let container_wrap = document.querySelector('.container_wrap')
 let main = document.querySelector('main')
-getData('/goods?type=' + 'PC')
-    .then(res => {
-        reload(res.data.slice(0, 6), wrapper)
-    })
+// getData('/goods?type=' + 'PC')
+//     .then(res => {
+//         reload(res.data.slice(0, 6), wrapper)
+//     })
 btn.onclick = () => {
     location.assign('/pages/basket/')
 }
@@ -30,7 +30,7 @@ if (get.length === 0) {
 
     img.src = "/public/img/hearts.png";
     wraper.style.display = 'none'
-    container_wrap.style.display = 'none'
+    // container_wrap.style.display = 'none'
 
     message.innerHTML = "Добавьте что то в корзину";
     tip.innerHTML =

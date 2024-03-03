@@ -67,7 +67,12 @@ function coloris(arr) {
         li.classList.add('categorie_li')
 
         a.innerHTML = item
-        a.href = '/pages/shop/?type=' + id + '/?colors=' + item
+        li.style.cursor = 'pointer'
+        // a.href = '/pages/shop/?type=' + id
+        a.onclick = () => {
+            getData('/goods?colors=' + item)
+                .then(res =>console.log(res.data))
+        }
         if (a.innerHTML === "orange") {
             let img = document.createElement('img')
             li.append(img)

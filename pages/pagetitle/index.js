@@ -40,28 +40,27 @@ getData(`/goods/${id}`)
         let btn_add_shop = document.createElement('button')
         let btn_add_favorites = document.createElement('button')
         let similar_products = document.createElement('div')
-        let h1 = document.createElement('h1')
         // Создаем слайдер
         let swiper = document.createElement('div');
-        swiper.className = 'swiper mySwiper';
+        swiper.className = 'mySwiper';
         let swiperWrapper = document.createElement('div');
         swiperWrapper.className = 'swiper-wrapper';
         let slide1 = document.createElement('div');
-        slide1.className = 'swiper-slide';
+        slide1.className = 'swiper-slid';
         let slide1Img = document.createElement('img');
         slide1Img.src = res.data.media[0]
         slide1Img.alt = '';
         slide1.appendChild(slide1Img);
 
         let slide2 = document.createElement('div');
-        slide2.className = 'swiper-slide';
+        slide2.className = 'swiper-slid';
         let slide2Img = document.createElement('img');
         slide2Img.src = res.data.media[1]
         slide2Img.alt = '';
         slide2.appendChild(slide2Img);
 
         let slide3 = document.createElement('div');
-        slide3.className = 'swiper-slide';
+        slide3.className = 'swiper-slid';
         let slide3Img = document.createElement('img');
         slide3Img.src = res.data.media[2]
         slide3Img.alt = '';
@@ -98,7 +97,6 @@ getData(`/goods/${id}`)
         counter_plus.innerHTML = '+'
         counter_minus.innerHTML = '-'
         img.src = res.data.media[0]
-        h1.innerHTML = 'Похожие товары'
         h3.innerHTML = res.data.title
         btn_add_favorites.innerHTML = 'Добавить в избранное'
         btn_add_shop.innerHTML = 'Добавить в корзину'
@@ -117,7 +115,7 @@ getData(`/goods/${id}`)
         swiper.appendChild(swiperPagination);
         swiper.appendChild(swiperButtonNext);
         swiper.appendChild(swiperButtonPrev);
-        link.append(div, h1, similar_products)
+        link.append(div, similar_products)
         div.append(swiper, text, text_current)
         text.append(h3, text_current, counter, hr, p_descript, div_btns)
         div_btns.append(btn_add_favorites, btn_add_shop)
@@ -147,26 +145,7 @@ getData(`/goods/${id}`)
             strong.innerHTML = `${price}` * counter_input.value + 'сум'
 
         }
-        if (res.data.type === "furniture") {
-            getData('/goods?type=furniture')
-                .then(res => reload(res.data, similar_products))
-        }
-        if (res.data.type === "PC") {
-            getData('/goods?type=PC')
-                .then(res => reload(res.data, similar_products))
-        }
-        if (res.data.type === "audio") {
-            getData('/goods?type=audio')
-                .then(res => reload(res.data, similar_products))
-        }
-        if (res.data.type === "TV") {
-            getData('/goods?type=TV')
-                .then(res => reload(res.data, similar_products))
-        }
-        if (res.data.type === "kitchen") {
-            getData('/goods?type=kitchen')
-                .then(res => reload(res.data, similar_products))
-        }
+      
         btn_add_shop.onclick = (e) => {
             e.preventDefault();
             if (likes.includes(id)) {
@@ -214,27 +193,7 @@ getData(`/goods/${id}`)
                 }
             }
         }
-        let swip = new Swiper(".swiper", {
-            spaceBetween: 40,
-            centeredSlides: true,
-            autoplay: {
-                delay: 2000,
-            },
-            allowTouchMove: true,
-
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-                type: 'progressbar',
-            },
-
-            mousewheel: true,
-            keyboard: true,
-        });
+      
 
     })
 footer()
