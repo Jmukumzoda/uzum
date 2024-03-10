@@ -112,7 +112,7 @@ export function reload(arr, place) {
 }
 const windowDiv = document.querySelector('.window');
 const closeButton = document.querySelector('.close');
-let navbar = document.querySelector('.navbar')
+// let navbar = document.querySelector('.navbar')
 let search = document.querySelector('.search_titil')
 let search_text = document.querySelector('.text_search')
 export function head() {
@@ -148,8 +148,9 @@ export function head() {
     let li_logout = document.createElement('li')
     let logout_p = document.createElement('p')
     let logout_img = document.createElement('img')
-    // let li_navbar = document.createElement('li')
-    // let navbar_img = document.createElement('img')
+    let navbar = document.querySelector('.text_navbar_bot')
+    let navbar_bottom = document.querySelector('.botom_navbar')
+
 
 
 
@@ -233,7 +234,6 @@ export function head() {
     div_btn.append(p_catalog)
     li_inp.append(inp, inp_img)
     ul_user.append(li_user, li_Favorites, li_shops)
-    ul_user.after(navbar)
     li_user.append(li_img_user, user_p)
     li_Favorites.append(li_img_Favorites, Favorites_p)
     li_shops.append(li_img_shops, shops_p)
@@ -262,6 +262,17 @@ export function head() {
         }
 
     }
+    inp.onkeyup = () => {
+        getData('/goods')
+            .then(res => {
+                console.log(res);
+                let value = inp.value
+                res.data.title.filter(item => item.data.includes(value));
+
+                // console.log(search('Кресло'));
+
+            })
+    }
     ul.firstElementChild.onclick = () => {
         location.assign('/')
     }
@@ -283,46 +294,7 @@ export function head() {
             windowDiv.style.right = '-270px'
         }
     }
-    // inp.onkeyup = (e) => {
-    //     e.preventDefault();
-    //     search.classList.add('show_titil')
-    //     let value = inp.value
-    //     getData('/goods?title=' + value)
-    //         .then(res => {
-    //             console.log(res);
-    //             for (let i of res.data) {
-    //                 let a = document.createElement('a')
-    //                 a.innerHTML = i.title
-    //                 a.href = '/pages/pagetitle/?id=' + i.id
-    //                 search_text.append(a)
-    //                 console.log(a);
-    //             }
 
-    //         })
-    // }
-
-    // inp.onkeyup = (e) => {
-    //     e.preventDefault()
-    //     getData('/goods')
-    //         .then(res => {
-    //             console.log(res);
-    //             let value = inp.value;
-    //             for (let i of res.data) {
-    //             if (value[0][1] == i.title[0][1]) {
-    //                     console.log(i.titler);
-    //                 }
-    //             }
-    //             // getData('/goods?title' )
-    //             //     .then(res => {
-    //             //         console.log(res);
-    //             //         // console.log(res.data.title);
-    //             //       
-    //             //     })
-
-
-    //         })
-
-    // }
     li_logout.onclick = () => {
         location.assign('/')
     }
@@ -333,80 +305,55 @@ export function head() {
     }
 }
 export function navbar_window() {
-    let close_navbar = document.querySelector('.close_nav')
     let ul = document.createElement('ul')
     let li_user = document.createElement('li')
     let li_img_user = document.createElement('img')
-    let user_p = document.createElement('a')
     let li_Favorites = document.createElement('li')
     let li_img_Favorites = document.createElement('img')
-    let Favorites_p = document.createElement('a')
     let li_shops = document.createElement('li')
     let li_img_shops = document.createElement('img')
-    let shops_p = document.createElement('a')
-    let window_all = document.querySelector('.all')
-    let li_inp = document.createElement('li')
-    let inp = document.createElement('input')
-    let inp_img = document.createElement('img')
+    let text_user = document.createElement("p")
+    let text_like = document.createElement("p")
+    let text_shop = document.createElement("p")
+
+    let navbar = document.querySelector('.text_navbar_bot')
 
 
-    li_user.classList.add('user_shop_li')
-    li_Favorites.classList.add('user_shop_li')
-    li_shops.classList.add('user_shop_li')
+    li_user.classList.add('user_shop_li_two')
+    li_Favorites.classList.add('user_shop_li_two')
+    li_shops.classList.add('user_shop_li_two')
     li_img_user.classList.add('user_shop_img')
     li_img_Favorites.classList.add('user_shop_img')
     li_img_shops.classList.add('user_shop_img')
-    // ul.style.display = 'flex'
-    // ul.style.gap = '10px'
-    inp.classList.add('setings_input')
-    inp_img.classList.add('search_img')
+
     ul.classList.add('navbarUl')
 
 
     li_img_Favorites.src = '/img/heart.png'
     li_img_shops.src = '/img/bag.png'
     li_img_user.src = '/img/user.png'
-    inp.type = 'text'
-    inp.placeholder = 'Искать товары и категории'
+    text_user.innerHTML = user.name
+    text_like.innerHTML = "Избранное"
+    text_shop.innerHTML = "Корзина"
 
-    ul.append(li_user, li_Favorites, li_shops, li_inp)
-    window_all.append(ul)
-    li_user.append(li_img_user, user_p)
-    li_Favorites.append(li_img_Favorites, Favorites_p)
-    li_shops.append(li_img_shops, shops_p)
-    li_inp.append(inp, inp_img)
+    ul.append(li_user, li_Favorites, li_shops)
 
-    navbar.onclick = (e) => {
-        e.preventDefault()
-        window_all.style.right = '0';
-    }
-    close_navbar.onclick = () => {
-        window_all.style.right = '-270px'
-    }
+    navbar.append(ul)
+    li_user.append(li_img_user, text_user)
+    li_Favorites.append(li_img_Favorites, text_like)
+    li_shops.append(li_img_shops, text_shop)
+
+
     li_Favorites.onclick = () => {
         location.assign('/pages/Favorite/')
     }
     li_shops.onclick = () => {
         location.assign('/pages/basket/')
     }
-    inp.onkeyup = (e) => {
-        e.preventDefault();
-        search.classList.add('show_titil')
-        let value = inp.value
-        getData('/goods?title=' + value)
-            .then(res => {
-                console.log(res);
-                for (let i of res.data) {
-                    let a = document.createElement('a')
-                    a.innerHTML = i.title
-                    a.href = '/pages/pagetitle/?id=' + i.id
-                    a.style.color = 'black'
-                    search_text.append(a)
-                    console.log(a);
-                }
-
-            })
+    li_user.onclick = () => {
+        location.assign('/')
     }
+
 }
 export function footer() {
     let main = document.querySelector('main')
